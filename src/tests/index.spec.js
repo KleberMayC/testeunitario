@@ -10,4 +10,16 @@ describe("getVideoAula", () => {
     expect(videoAula.nome).toBe(nomeDaAulaQueEuQuero);
     expect(videoAula.url).toBe(urlDaAulaQueEuQuero);
   });
+
+  it("não deve ser capaz de retornar uma video aula caso o nome passodo não corresponda a nenhum registro", () => {
+    const nomeDaAulaQueEuQuero = "aula que não existe";
+    // const urlDaAulaQueEuQuero = "url que não existe";
+
+    const videoAula = getVideoAula(nomeDaAulaQueEuQuero);
+
+    expect(videoAula.ok).toBe(false);
+    expect(videoAula.erro).toBe(
+      "aula não encontrada para este nome: " + nomeDaAulaQueEuQuero
+    );
+  });
 });
